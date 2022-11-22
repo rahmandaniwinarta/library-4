@@ -12,7 +12,10 @@ server.use(cors());
 server.use(bearerToken());
 
 const { user } = require("./routers");
+const { book } = require("./routers");
+
 server.use("/lib", user);
+server.use("/lib", book);
 
 server.listen(PORT, () => {
   // db.sequelize.sync({ alter: true });

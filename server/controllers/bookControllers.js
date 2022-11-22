@@ -16,6 +16,7 @@ module.exports = {
         synopsis,
         cover,
       });
+      res.status(200).send("Book Added");
     } catch (err) {
       res.status(400).send(err);
     }
