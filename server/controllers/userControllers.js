@@ -51,8 +51,8 @@ module.exports = {
         raw: true,
       });
       if (!isUserExist) throw "user not found!";
-
       const payload = { NIM: isUserExist.NIM, isAdmin: isUserExist.isAdmin };
+
       const token = jwt.sign(payload, "z1x2c3v4b5");
 
       const isValid = await bcrypt.compare(password, isUserExist.password);
