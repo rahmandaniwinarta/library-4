@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import {
   Input,
   Button,
@@ -9,33 +9,35 @@ import {
 } from "@chakra-ui/react";
 import Axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../redux/userSlice";
+import { login } from "../redux/adminSlice";
 import { useNavigate } from "react-router-dom";
 
-const url = "http://localhost:2000/lib/login";
+const url = "http://localhost:2000/admin/loginAdmin";
 
-export const LoginPage = () => {
-  const { NIM } = useSelector((state) => state.userSlice.value);
-  console.log(NIM);
+export const LoginAdminPage = () => {
+  const { username } = useSelector((state) => state.adminSlice.value);
+  console.log(username);
   const navigate = useNavigate();
-  const inputNIM = useRef("");
+  const inputUsername = useRef("");
   const inputPassword = useRef("");
   const dispatch = useDispatch();
+
 
   const onLogin = async (data) => {
     data.preventDefault();
 
     try {
       const user = {
-        NIM: inputNIM.current.value,
+        username: inputUsername.current.value,
         password: inputPassword.current.value,
       };
 
       console.log(user);
+      console.log(inputUsername.current)
       const result = await Axios.post(url, user); // data yg dari back end kesimpen di result.data
       dispatch(
         login({
-          NIM: result.data.isUserExist.NIM,
+          username: result.data.isAdminExist.username,
         })
       );
 
@@ -47,24 +49,25 @@ export const LoginPage = () => {
     }
   };
 
+
   return (
     <Container bg="#38A169" w="300px" h="350px" mt={20}>
-
-      <Heading mb={10}>Login User</Heading>
-
+      <Heading mb={10}>Login Admin</Heading>
       <form onSubmit={onLogin}>
-        <FormControl>
-          <FormLabel>NIM</FormLabel>
-          <Input type="number" placeholder="NIM" ref={inputNIM} />
-        </FormControl>
-        <FormControl>
-          <FormLabel>Password</FormLabel>
-          <Input type="password" placeholder="password" ref={inputPassword} />
-        </FormControl>
-        <Button mt={10} w="100%" onClick={onLogin} colorScheme="orange">
-          Login
-        </Button>
+      <FormControl>
+        <FormLabel>Username</FormLabel>
+        <Input type="text" placeholder="Username" ref={inputUsername} />
+      </FormControl>
+      <FormControl>
+        <FormLabel>Password</FormLabel>
+        <Input type="password" placeholder="Password" ref={inputPassword} />
+      </FormControl>
+      <Button mt={10} w="100%" onClick={onLogin} colorScheme="orange">
+        Login
+      </Button>
       </form>
     </Container>
   );
 };
+
+
