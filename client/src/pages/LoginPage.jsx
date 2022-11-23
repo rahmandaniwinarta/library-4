@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/userSlice";
 import { useNavigate } from "react-router-dom";
 
-const url = "http://localhost:2000/lib/login";
+const url = "http://localhost:2000/users/login";
 
 export const LoginPage = () => {
   const { NIM } = useSelector((state) => state.userSlice.value);
@@ -51,7 +51,9 @@ export const LoginPage = () => {
 
   return (
     <Container bg="#38A169" w="300px" h="350px" mt={20}>
+
       <Heading mb={10}>Login User</Heading>
+
       <form onSubmit={onLogin}>
       <FormControl>
         <FormLabel>NIM</FormLabel>
