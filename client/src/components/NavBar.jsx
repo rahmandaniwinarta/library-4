@@ -46,7 +46,12 @@ export default function WithSubnavigation() {
         borderBottom={1}
         borderStyle={"solid"}
         borderColor={useColorModeValue("gray.200", "gray.900")}
-        align={"center"}
+        align="center"
+        pos="relative"
+        justify="center"
+        boxSize="full"
+        position="static"
+        as="header"
       >
         <Flex
           flex={{ base: 1, md: "auto" }}
