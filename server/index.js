@@ -11,14 +11,12 @@ server.use(express.json());
 server.use(cors());
 server.use(bearerToken());
 
-
-const { user, admin,book } = require("./routers");
+const { user, admin, book } = require("./routers");
 server.use("/lib", user);
 server.use("/admin", admin);
 server.use("/book", book);
 
-
 server.listen(PORT, () => {
-  // db.sequelize.sync({ alter: true });
+  db.sequelize.sync({ alter: true });
   console.log(`berhasil di port : ${PORT}`);
 });

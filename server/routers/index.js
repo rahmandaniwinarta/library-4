@@ -4,7 +4,6 @@ const admin = require("./adminRouters");
 
 module.exports = {
   user,
-  admin,  
+  admin,
   book,
-
 };
