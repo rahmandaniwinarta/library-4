@@ -1,4 +1,6 @@
-import { useRef } from "react";
+
+import { useRef, useState } from "react";
+
 import {
   Input,
   Button,
@@ -21,6 +23,7 @@ export const LoginPage = () => {
   const inputNIM = useRef("");
   const inputPassword = useRef("");
   const dispatch = useDispatch();
+
 
   const onLogin = async (data) => {
     data.preventDefault();
@@ -47,24 +50,28 @@ export const LoginPage = () => {
     }
   };
 
+
+
   return (
     <Container bg="#38A169" w="300px" h="350px" mt={20}>
-
       <Heading mb={10}>Login User</Heading>
-
       <form onSubmit={onLogin}>
-        <FormControl>
-          <FormLabel>NIM</FormLabel>
-          <Input type="number" placeholder="NIM" ref={inputNIM} />
-        </FormControl>
-        <FormControl>
-          <FormLabel>Password</FormLabel>
-          <Input type="password" placeholder="password" ref={inputPassword} />
-        </FormControl>
-        <Button mt={10} w="100%" onClick={onLogin} colorScheme="orange">
-          Login
-        </Button>
+      <FormControl>
+        <FormLabel>NIM</FormLabel>
+        <Input type="number" placeholder="NIM" ref={inputNIM} />
+      </FormControl>
+      <FormControl>
+        <FormLabel>Password</FormLabel>
+        <Input type="password" placeholder="password" ref={inputPassword} />
+      </FormControl>
+      <Button mt={10} w="100%" onClick={onLogin} colorScheme="orange">
+        Login
+      </Button>
+
+
       </form>
     </Container>
   );
 };
+
+

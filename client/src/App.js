@@ -6,6 +6,7 @@ import { LayOut } from "./components/LayOut";
 import { VerifiedPage } from "./pages/VerifiedPage";
 import { LoginAdminPage } from "./pages/loginAdminPage";
 import { adminPage } from "./pages/adminPage";
+
 import Axios from "axios";
 //setup react
 import { useEffect } from "react";
@@ -52,7 +53,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/verification/:token" element={<VerifiedPage />} />
         <Route path="/loginAdmin" element={<LoginAdminPage />} />
-        <Route path="/admin" element={<adminPage />} />
+        <Route path="/admin" element={<adminPage/>} />
       </Routes>
     </div>
   );
