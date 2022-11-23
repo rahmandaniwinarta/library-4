@@ -14,17 +14,10 @@ import { BsGithub, BsLinkedin } from "react-icons/bs";
 // import { GiCondorEmblem } from "react-icons/gi";
 import { Link } from "react-router-dom";
 
-
-
-
-
-
 const Footer = () => {
   const [isLargerThan] = useMediaQuery("(min-width: 768px)");
   const [isSmallerThan] = useMediaQuery("(min-width: 468px)");
 
-
-  
   return (
    
     <div className="Footer">

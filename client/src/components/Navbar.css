@@ -1,0 +1,33 @@
+.Home {
+  margin-top: 100px;
+  width: 100%;
+  box-shadow: 12px 0 15px -4px rgba(31, 73, 125, 0.8),
+  -12px 0 8px -4px rgba(31, 73, 125, 0.8);
+  box-shadow: 0 9px 0px 0px white, 0 -9px 0px 0px white,
+  12px 0 15px -4px rgba(31, 73, 125, 0.8),
+  -12px 0 15px -4px rgba(31, 73, 125, 0.8);
+}
+  .Navbar {
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    overflow: hidden;
+    width: 100%; /* Full width */ 
+    z-index: 1;
+    border-bottom: solid 1px var(--primary-color);
+    margin: auto;
+    opacity: 1;
+    box-shadow: 12px 0 15px -4px rgba(31, 73, 125, 0.8),
+    -12px 0 8px -4px rgba(31, 73, 125, 0.8);
+    box-shadow: 0 9px 0px 0px white, 0 -9px 0px 0px white,
+    12px 0 15px -4px rgba(31, 73, 125, 0.8),
+    -12px 0 15px -4px rgba(31, 73, 125, 0.8);
+  }
+
+  .Navbar a:hover {
+    background: #FAF089;
+    color: #FAF089;
+  }
+  
+ 
+
+
