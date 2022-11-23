@@ -15,7 +15,7 @@ const { user } = require("./routers");
 const { book } = require("./routers");
 
 server.use("/lib", user);
-server.use("/lib", book);
+server.use("/book", book);
 
 server.listen(PORT, () => {
   // db.sequelize.sync({ alter: true });
