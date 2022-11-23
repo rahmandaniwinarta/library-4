@@ -1,7 +1,7 @@
 const user = require("./userRouters");
-// const book = require("./bookRouters");
+const book = require("./bookRouters");
 
 module.exports = {
   user,
-  // book
+  book,
 };
