@@ -1,26 +1,28 @@
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { useState } from "react";
+import {
+  Input,
+  FormLabel,
+  Button,
+  Center,
+  Box,
+  Container,
+  Heading,
+  Flex,
+  Text,
+} from "@chakra-ui/react";
+import swal from "sweetalert2";
+import { Formik, ErrorMessage, Field, Form } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-import {
-  Container,
-  Flex,
-  VStack,
-  Heading,
-  Text,
-  SimpleGrid,
-  GridItem,
-  FormControl,
-  FormLabel,
-  Input,
-  Button,
-} from "@chakra-ui/react";
-
+// setup redux
+import { useDispatch } from "react-redux";
+import { login } from "../redux/userSlice";
 const url = "http://localhost:2000/lib/register";
 
 export const RegisterPage = () => {
-  const navigate = useNavigate();
+  // const [messageErr, setMessageErr] = useState("");
 
   const RegisterSchema = Yup.object().shape({
     NIM: Yup.number().required().min(6, "NIM must be more than 6 character"),
@@ -29,7 +31,11 @@ export const RegisterPage = () => {
     password: Yup.string().required().min(6, "Password min 6 Character"),
   });
 
+  // const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const onRegister = async (values) => {
+    // values.preventDefault();
     try {
       if (values.password !== values.confirmPassword) {
         alert("password gasama");
@@ -44,122 +50,102 @@ export const RegisterPage = () => {
   };
 
   return (
-    <Container maxW="container.xl" p={0} bg="gray">
-      <Formik
-        initialValues={{
-          NIM: undefined,
-          username: "",
-          email: "",
-          password: "",
-          confirmPassword: "",
-        }}
-        validationSchema={RegisterSchema}
-        onSubmit={(values, action) => {
-          onRegister(values);
-          // console.log(values);
-        }}
-      >
-        {(props) => {
-          console.log(props);
-          return (
-            <Form>
-              <Flex h="100vh" py={20}>
-                <VStack
-                  w="full"
-                  h="full"
-                  p={2}
-                  spacing={10}
-                  alignItems="flex-start"
-                  bg="salmon"
+    <Box>
+      <Center>
+        <Formik
+          initialValues={{
+            NIM: undefined,
+            username: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+          }}
+          validationSchema={RegisterSchema}
+          onSubmit={(values, action) => {
+            onRegister(values);
+          }}
+        >
+          {(props) => {
+            console.log(props);
+            return (
+              <Form>
+                <Flex
+                  bg="#38A169"
+                  justifyContent="space-around"
+                  alignItems={"center"}
+                  fontWeight="bold"
                 >
-                  <VStack spacing={1} alignItems="flex-start">
-                    <Heading size="xl">Register your account</Heading>
-                    <Text>Please fill the form below</Text>
-                  </VStack>
-                  <SimpleGrid w="full" rowGap={1}>
-                    <GridItem>
-                      <FormControl>
-                        <FormLabel>NIM</FormLabel>
-                        <Input
-                          placeholder="input NIM here"
-                          type="number"
-                          as={Field}
-                          name="NIM"
-                        />
-                        <ErrorMessage
-                          name="NIM"
-                          component="div"
-                          style={{ color: "red" }}
-                        />
-                      </FormControl>
-                    </GridItem>
-                    <GridItem>
-                      <FormControl>
-                        <FormLabel>Username</FormLabel>
-                        <Input
-                          placeholder="input username here"
-                          type="text"
-                          as={Field}
-                          name="username"
-                        />
-                      </FormControl>
-                    </GridItem>
-                    <GridItem>
-                      <FormControl>
-                        <FormLabel>Email</FormLabel>
-                        <Input
-                          placeholder="input email here"
-                          type="email"
-                          as={Field}
-                          name="email"
-                        />
-                      </FormControl>
-                    </GridItem>
-                    <GridItem>
-                      <FormControl>
-                        <FormLabel>Password</FormLabel>
-                        <Input
-                          placeholder="input password here"
-                          type="password"
-                          as={Field}
-                          name="password"
-                        />
-                        <ErrorMessage
-                          name="password"
-                          component="div"
-                          style={{ color: "red" }}
-                        />
-                      </FormControl>
-                    </GridItem>
-                    <GridItem>
-                      <FormControl>
-                        <FormLabel>Confirm Password</FormLabel>
-                        <Input
-                          placeholder="make sure the password match"
-                          type="password"
-                          as={Field}
-                          name="confirmPassword"
-                        />
-                      </FormControl>
-                    </GridItem>
-                  </SimpleGrid>
-                  <Button type="submit" colorScheme="teal" size="lg">
-                    Register
-                  </Button>
-                </VStack>
-                <VStack
-                  w="full"
-                  h="full"
-                  p={10}
-                  spacing={10}
-                  alignItems="flex-start"
-                  bg="gray.50"
-                ></VStack>
-              </Flex>
-            </Form>
-          );
-        }}
-      </Formik>
-    </Container>
+                  <Container mt={20}>
+                    <Heading mb={6}>Register</Heading>
+                    <Text textAlign="center" mb="30px" fontSize="xl">
+                      Already have an account? Sign in here
+                    </Text>
+                    <FormLabel>NIM</FormLabel>
+                    <Input
+                      type="number"
+                      as={Field}
+                      name="NIM"
+                      placeholder="NIM"
+                    />
+                    <ErrorMessage
+                      style={{ color: "red" }}
+                      component="div"
+                      name="NIM"
+                    />
+                    <FormLabel mt="20px">Username</FormLabel>
+                    <Input as={Field} name="username" placeholder="Username" />
+                    <ErrorMessage
+                      style={{ color: "red" }}
+                      component="div"
+                      name="username"
+                    />
+                    <FormLabel mt="20px">Email</FormLabel>
+                    <Input
+                      type="text"
+                      as={Field}
+                      name="email"
+                      placeholder="Email"
+                    />
+                    <ErrorMessage
+                      style={{ color: "red" }}
+                      component="div"
+                      name="email"
+                    />
+                    <FormLabel mt="20px">Password</FormLabel>
+                    <Input
+                      type="password"
+                      as={Field}
+                      name="password"
+                      placeholder="Password"
+                    />
+                    <ErrorMessage
+                      style={{ color: "red" }}
+                      component="div"
+                      name="password"
+                    />
+                    <FormLabel mt="20px">Confirm Password</FormLabel>
+                    <Input
+                      type="password"
+                      as={Field}
+                      name="confirmPassword"
+                      placeholder="Confirm Password"
+                    />
+                    <Button
+                      w="100%"
+                      mt="20px"
+                      colorScheme="orange"
+                      type="submit"
+                      mb="20px"
+                    >
+                      Submit
+                    </Button>
+                  </Container>
+                </Flex>
+              </Form>
+            );
+          }}
+        </Formik>
+      </Center>
+    </Box>
   );
 };

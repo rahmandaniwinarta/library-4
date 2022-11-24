@@ -1,7 +1,10 @@
 const user = require("./userControllers");
-// const book = require("./bookControllers");
+
+const book = require("./bookControllers");
+const admin = require("./adminControllers");
 
 module.exports = {
   user,
-  // book,
+  admin,
+  book,
 };
