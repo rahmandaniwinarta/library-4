@@ -18,6 +18,8 @@ module.exports = (sequelize, DataTypes) => {
       category: DataTypes.STRING,
       synopsis: DataTypes.STRING(1000),
       cover: DataTypes.STRING,
+      year: DataTypes.STRING,
+      publisher:DataTypes.STRING,
     },
     {
       sequelize,

@@ -41,7 +41,7 @@ export const LoginAdminPage = () => {
         })
       );
 
-      localStorage.setItem("token", result.data.token);
+      localStorage.setItem("tokenAdmin", result.data.token);
       navigate("/");
     } catch (err) {
       console.log(err);

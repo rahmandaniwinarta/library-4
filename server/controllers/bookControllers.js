@@ -5,9 +5,9 @@ const { Op } = require("sequelize");
 module.exports = {
   create: async (req, res) => {
     try {
-      const { title, author, category, synopsis, cover } = req.body;
+      const { title, author, category, synopsis, cover, year, publisher } = req.body;
 
-      if (!title & !author & !category & !synopsis & !cover)
+      if (!title & !author & !category & !synopsis & !cover & !year & !publisher)
         throw "Insert data is not complete";
 
       const data = await book.create({
@@ -16,6 +16,8 @@ module.exports = {
         category,
         synopsis,
         cover,
+        year,
+        publisher,
       });
       res.status(200).send({ massage: "Book Added", data });
     } catch (err) {
@@ -25,7 +27,7 @@ module.exports = {
   getAll: async (req, res) => {
     try {
       const user = await book.findAll({
-        attributes: ["title", "author", "category", "synopsis", "cover"],
+        attributes: ["title", "author", "category", "synopsis", "cover", "year", "publisher"],
       });
       res.status(200).send(user);
     } catch (err) {
@@ -74,7 +76,7 @@ module.exports = {
 
   update: async (req, res) => {
     try {
-      const { title, author, category, synopsis, cover, id } = req.body;
+      const { title, author, category, synopsis, cover, year, publisher, id } = req.body;
 
       await book.update(
         {
@@ -83,6 +85,8 @@ module.exports = {
           category,
           synopsis,
           cover,
+          year,
+          publisher,
         },
         { where: { id } }
       );
